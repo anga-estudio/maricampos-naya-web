@@ -8,11 +8,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mentoria Nayá — Mari Campos",
+  title: "Mari Campos | Nayá",
   description:
     "O caminho de volta pra mulher que você era antes de se perder no caminho dos outros. Mentoria de 8 semanas com Mari Campos.",
   openGraph: {
-    title: "Mentoria Nayá — Mari Campos",
+    title: "Mari Campos | Nayá",
     description:
       "Uma mentoria de autossustentação emocional. 8 semanas, em grupo, com encontros ao vivo, meditação guiada e ferramentas que funcionam.",
     locale: "pt_BR",
