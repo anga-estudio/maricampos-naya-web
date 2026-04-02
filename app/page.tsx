@@ -22,6 +22,8 @@ export default function Home() {
         >
           <source src="/videos/header.mp4" type="video/mp4" />
         </video>
+        {/* Overlay verde */}
+        <div className="absolute inset-0 bg-[#657E66]/75 z-[1]" />
         {/* Logo */}
         <div className="relative z-10">
           <Logo className="h-20 w-auto" />
