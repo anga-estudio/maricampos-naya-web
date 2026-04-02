@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" fill="none">
+
+  <!-- Galho principal esquerdo -->
+  <path d="M 60 900 C 80 750 120 650 100 500 C 85 380 60 280 90 140" stroke="#5E7A5F" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.25"/>
+
+  <!-- Galhos laterais esquerdo -->
+  <path d="M 90 420 C 130 390 180 370 230 360" stroke="#5E7A5F" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.2"/>
+  <path d="M 85 520 C 120 490 160 480 190 460" stroke="#5E7A5F" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.2"/>
+  <path d="M 95 300 C 140 270 180 265 220 255" stroke="#5E7A5F" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.2"/>
+  <path d="M 92 620 C 55 590 30 570 10 550" stroke="#5E7A5F" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.15"/>
+
+  <!-- Folhas esquerda — ramo 420 -->
+  <ellipse cx="185" cy="355" rx="22" ry="10" transform="rotate(-20 185 355)" fill="#5E7A5F" opacity="0.13"/>
+  <ellipse cx="218" cy="343" rx="18" ry="8" transform="rotate(-28 218 343)" fill="#5E7A5F" opacity="0.10"/>
+  <ellipse cx="155" cy="368" rx="16" ry="7" transform="rotate(-10 155 368)" fill="#5E7A5F" opacity="0.10"/>
+
+  <!-- Folhas esquerda — ramo 520 -->
+  <ellipse cx="155" cy="472" rx="20" ry="9" transform="rotate(-15 155 472)" fill="#5E7A5F" opacity="0.13"/>
+  <ellipse cx="186" cy="456" rx="16" ry="7" transform="rotate(-22 186 456)" fill="#5E7A5F" opacity="0.10"/>
+
+  <!-- Folhas esquerda — ramo 300 -->
+  <ellipse cx="175" cy="257" rx="21" ry="9" transform="rotate(-18 175 257)" fill="#5E7A5F" opacity="0.12"/>
+  <ellipse cx="212" cy="245" rx="17" ry="7" transform="rotate(-25 212 245)" fill="#5E7A5F" opacity="0.09"/>
+
+  <!-- Galho principal direito -->
+  <path d="M 840 900 C 820 740 790 640 810 490 C 825 370 860 260 830 110" stroke="#5E7A5F" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.22"/>
+
+  <!-- Galhos laterais direito -->
+  <path d="M 820 410 C 780 380 730 360 680 352" stroke="#5E7A5F" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.18"/>
+  <path d="M 815 510 C 775 482 740 472 710 458" stroke="#5E7A5F" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.18"/>
+  <path d="M 825 295 C 780 268 745 260 710 252" stroke="#5E7A5F" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.18"/>
+  <path d="M 818 615 C 855 588 882 570 900 552" stroke="#5E7A5F" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.13"/>
+
+  <!-- Folhas direita — ramo 410 -->
+  <ellipse cx="715" cy="347" rx="22" ry="10" transform="rotate(20 715 347)" fill="#5E7A5F" opacity="0.12"/>
+  <ellipse cx="682" cy="335" rx="18" ry="8" transform="rotate(28 682 335)" fill="#5E7A5F" opacity="0.09"/>
+  <ellipse cx="748" cy="358" rx="16" ry="7" transform="rotate(12 748 358)" fill="#5E7A5F" opacity="0.09"/>
+
+  <!-- Folhas direita — ramo 510 -->
+  <ellipse cx="745" cy="462" rx="20" ry="9" transform="rotate(16 745 462)" fill="#5E7A5F" opacity="0.12"/>
+  <ellipse cx="714" cy="449" rx="16" ry="7" transform="rotate(22 714 449)" fill="#5E7A5F" opacity="0.09"/>
+
+  <!-- Folhas direita — ramo 295 -->
+  <ellipse cx="725" cy="250" rx="21" ry="9" transform="rotate(18 725 250)" fill="#5E7A5F" opacity="0.11"/>
+  <ellipse cx="690" cy="240" rx="17" ry="7" transform="rotate(26 690 240)" fill="#5E7A5F" opacity="0.09"/>
+
+  <!-- Galho topo centro -->
+  <path d="M 380 0 C 400 80 430 160 420 260" stroke="#5E7A5F" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="0.15"/>
+  <path d="M 420 140 C 460 120 500 115 535 110" stroke="#5E7A5F" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.13"/>
+  <path d="M 415 190 C 375 170 345 162 318 158" stroke="#5E7A5F" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.12"/>
+
+  <!-- Folhas topo -->
+  <ellipse cx="492" cy="110" rx="19" ry="8" transform="rotate(-12 492 110)" fill="#5E7A5F" opacity="0.10"/>
+  <ellipse cx="528" cy="102" rx="15" ry="6" transform="rotate(-18 528 102)" fill="#5E7A5F" opacity="0.08"/>
+  <ellipse cx="352" cy="156" rx="18" ry="7" transform="rotate(15 352 156)" fill="#5E7A5F" opacity="0.09"/>
+  <ellipse cx="320" cy="148" rx="14" ry="6" transform="rotate(22 320 148)" fill="#5E7A5F" opacity="0.07"/>
+
+</svg>

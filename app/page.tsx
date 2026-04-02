@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Logo from "./components/Logo";
 
 const WHATSAPP_URL = "https://wa.me/55XXXXXXXXXXX";
 const PAYMENT_URL  = "#inscricao";
@@ -8,15 +9,27 @@ export default function Home() {
     <main className="bg-stone text-ink overflow-x-hidden">
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line">
+      <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line relative overflow-hidden">
+        {/* Vídeo de fundo */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/header.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay para garantir legibilidade do texto */}
+        <div className="absolute inset-0 bg-stone/75" />
         {/* topo */}
-        <div className="flex items-center justify-between">
+        <div className="relative z-10 flex items-center justify-between">
           <span className="text-xs tracking-[0.25em] uppercase text-ink-muted">Mari Campos</span>
-          <span className="text-xs tracking-[0.25em] uppercase text-ink-muted">Mentoria Nayá</span>
+          <Logo className="text-2xl" />
         </div>
 
         {/* headline central */}
-        <div className="py-16 md:py-0">
+        <div className="relative z-10 py-16 md:py-0">
           <p className="text-sage text-xs tracking-[0.25em] uppercase mb-8">
             8 semanas · Ao vivo · Em grupo
           </p>
@@ -33,7 +46,7 @@ export default function Home() {
         </div>
 
         {/* rodapé hero — números */}
-        <div className="grid grid-cols-3 gap-4 border-t border-line pt-8 md:max-w-xl">
+        <div className="relative z-10 grid grid-cols-3 gap-4 border-t border-line pt-8 md:max-w-xl">
           {[
             { n: "8", label: "semanas de programa" },
             { n: "90min", label: "por encontro semanal" },
@@ -500,9 +513,9 @@ export default function Home() {
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer className="border-t border-line px-8 md:px-16 py-8 flex items-center justify-between">
-        <p className="text-ink-muted text-xs">Mari Campos</p>
+        <Logo className="text-lg" color="#8C877F" />
         <p className="text-ink-muted text-xs">
-          © {new Date().getFullYear()} Todos os direitos reservados.
+          © {new Date().getFullYear()} Mari Campos. Todos os direitos reservados.
         </p>
       </footer>
 
