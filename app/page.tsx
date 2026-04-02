@@ -6,10 +6,10 @@ const PAYMENT_URL  = "https://invoice.infinitepay.io/maricamposyogi/3myfGGJ8SF";
 
 export default function Home() {
   return (
-    <main className="bg-stone text-ink overflow-x-hidden">
+    <main className="text-ink overflow-x-hidden">
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line relative overflow-hidden bg-stone text-white">
+      <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line relative overflow-hidden text-white">
         {/* Vídeo de fundo */}
         <video
           autoPlay
@@ -27,7 +27,7 @@ export default function Home() {
 
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
-          <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-extralight leading-[1.1] tracking-tight max-w-4xl">
+          <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-light leading-[1.1] tracking-tight max-w-4xl">
             O caminho de volta pra mulher que você era antes de se perder no caminho dos outros.
           </h1>
           <div className="mt-12">
@@ -274,8 +274,7 @@ export default function Home() {
           <div className="mt-12 md:mt-0 flex flex-col items-start md:items-end gap-5">
             <div>
               <p className="text-sage-light/50 text-sm line-through">R$ 1.080,00</p>
-              <p className="text-stone text-6xl font-extralight tracking-tight">R$ 988</p>
-              <p className="text-sage-light/50 text-sm">,00</p>
+              <p className="text-stone text-6xl font-extralight tracking-tight">R$ 988<span className="text-sage-light/50 text-sm">,00</span></p>
             </div>
             <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
               className="inline-block bg-stone hover:bg-stone-dark text-ink text-xs tracking-[0.2em] uppercase px-10 py-4 transition-colors duration-200">
@@ -415,12 +414,32 @@ export default function Home() {
           O que dizem sobre a experiência com a Mari
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line">
-          {[1, 2, 3].map((i) => (
+          {[
+            {
+              text: "Os primeiros três dias do curso revolucionaram minha vida! Eu incorporei a respiração no meu dia-a-dia. Assim, não tenho mais dificuldade para pegar no sono à noite, durmo melhor, acordo mais descansada e o mais importante: não tenho mais crises de ansiedade às sextas-feiras. É porque o meu segundo trabalho que é aos sábados e domingos requer muito foco e agilidade. Eu sentia muita ansiedade. Muito obrigada Mariana! Obrigada também aos meus colegas participantes.",
+              author: "Ana Ucha",
+            },
+            {
+              text: "Ei Mari Campos, ao final dessa jornada posso dizer que foi inspirador ver nascer um projeto de tamanha qualidade e profundidade, com conteúdos e práticas transformadoras. O cuidado com cada detalhe demonstra o seu carinho e dedicação. Muito grato! Parabéns!",
+              author: "Andre Nascimento",
+            },
+            {
+              text: "Mari Campos, esses dias foram realmente muito, muito significativos para mim. Me trouxeram ainda mais consciência de estar no presente, de perceber quando começo a entrar no automático e me puxar de volta para viver o agora, com mais presença, alegria e intenção em cada momento.",
+              author: "Lu Mangoni",
+            },
+          ].map((dep, i) => (
             <div key={i} className="bg-stone-dark p-8 min-h-52 flex flex-col justify-between">
               <span className="text-sage/20 text-6xl font-extralight leading-none">&ldquo;</span>
-              <p className="text-ink-muted text-sm text-center font-sans">
-                Depoimento {i} — a ser adicionado
-              </p>
+              {dep.text ? (
+                <>
+                  <p className="text-ink-soft text-sm leading-relaxed">{dep.text}</p>
+                  <p className="text-sage text-xs tracking-widest uppercase mt-4">{dep.author}</p>
+                </>
+              ) : (
+                <p className="text-ink-muted text-sm text-center font-sans">
+                  Depoimento — a ser adicionado
+                </p>
+              )}
             </div>
           ))}
         </div>
