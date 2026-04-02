@@ -9,7 +9,7 @@ export default function Home() {
     <main className="bg-stone text-ink overflow-x-hidden">
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line relative overflow-hidden">
+      <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line relative overflow-hidden bg-stone text-white">
         {/* Vídeo de fundo */}
         <video
           autoPlay
@@ -20,18 +20,14 @@ export default function Home() {
         >
           <source src="/videos/header.mp4" type="video/mp4" />
         </video>
-        {/* Overlay para garantir legibilidade do texto */}
-        <div className="absolute inset-0 bg-stone/75 z-[1]" />
-        {/* Logo acima do overlay */}
-        <div className="absolute top-16 left-8 md:left-16 z-20">
+        {/* Logo */}
+        <div className="relative z-10">
           <Logo className="h-20 w-auto" />
         </div>
-        {/* topo — espaçador para manter o layout flex */}
-        <div className="relative z-10" />
 
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
-          <h1 className="text-ink text-[clamp(2.8rem,7vw,6rem)] font-extralight leading-[1.1] tracking-tight max-w-4xl">
+          <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-extralight leading-[1.1] tracking-tight max-w-4xl">
             O caminho de volta pra mulher que você era antes de se perder no caminho dos outros.
           </h1>
           <div className="mt-12">

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description:
     "O caminho de volta pra mulher que você era antes de se perder no caminho dos outros. Mentoria de 8 semanas com Mari Campos.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/images/icon.svg",
   },
   openGraph: {
     title: "Mari Campos | Nayá",
