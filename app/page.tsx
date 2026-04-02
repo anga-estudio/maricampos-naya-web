@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Logo from "./components/Logo";
+import AmbientSound from "./components/AmbientSound";
 
 const WHATSAPP_URL = "https://wa.me/5564992463702";
 const PAYMENT_URL  = "https://invoice.infinitepay.io/maricamposyogi/3myfGGJ8SF";
@@ -7,6 +8,7 @@ const PAYMENT_URL  = "https://invoice.infinitepay.io/maricamposyogi/3myfGGJ8SF";
 export default function Home() {
   return (
     <main className="text-ink overflow-x-hidden">
+      <AmbientSound />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="min-h-screen flex flex-col justify-between px-8 md:px-16 pt-16 pb-12 border-b border-line relative overflow-hidden text-white">
@@ -27,7 +29,7 @@ export default function Home() {
 
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
-          <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-light leading-[1.1] tracking-tight max-w-4xl">
+          <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-light leading-[1.1] tracking-tight max-w-4xl [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
             O caminho de volta pra mulher que você era antes de se perder no caminho dos outros.
           </h1>
           <div className="mt-12">
