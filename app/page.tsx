@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import Logo from "./components/Logo";
 
-const WHATSAPP_URL = "https://wa.me/55XXXXXXXXXXX";
-const PAYMENT_URL  = "#inscricao";
+const WHATSAPP_URL = "https://wa.me/5564992463702";
+const PAYMENT_URL  = "https://invoice.infinitepay.io/maricamposyogi/3myfGGJ8SF";
 
 export default function Home() {
   return (
@@ -16,47 +16,59 @@ export default function Home() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src="/videos/header.mp4" type="video/mp4" />
         </video>
         {/* Overlay para garantir legibilidade do texto */}
-        <div className="absolute inset-0 bg-stone/75" />
-        {/* topo */}
-        <div className="relative z-10 flex items-center justify-between">
-          <span className="text-xs tracking-[0.25em] uppercase text-ink-muted">Mari Campos</span>
-          <Logo className="text-2xl" />
+        <div className="absolute inset-0 bg-stone/75 z-[1]" />
+        {/* Logo acima do overlay */}
+        <div className="absolute top-16 left-8 md:left-16 z-20">
+          <Logo className="h-20 w-auto" />
         </div>
+        {/* topo — espaçador para manter o layout flex */}
+        <div className="relative z-10" />
 
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
-          <p className="text-sage text-xs tracking-[0.25em] uppercase mb-8">
-            8 semanas · Ao vivo · Em grupo
-          </p>
           <h1 className="text-ink text-[clamp(2.8rem,7vw,6rem)] font-extralight leading-[1.1] tracking-tight max-w-4xl">
             O caminho de volta pra mulher que você era antes de se perder no caminho dos outros.
           </h1>
-          <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <a href={PAYMENT_URL}
+          <div className="mt-12">
+            <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
               className="inline-block bg-sage hover:bg-sage-hover text-white text-xs tracking-[0.2em] uppercase px-10 py-4 transition-colors duration-200">
               Quero participar
             </a>
-            <span className="text-ink-muted text-sm">Início em 22 de abril — Vagas limitadas</span>
           </div>
         </div>
 
-        {/* rodapé hero — números */}
-        <div className="relative z-10 grid grid-cols-3 gap-4 border-t border-line pt-8 md:max-w-xl">
-          {[
-            { n: "8", label: "semanas de programa" },
-            { n: "90min", label: "por encontro semanal" },
-            { n: "10–20min", label: "de prática diária" },
-          ].map(({ n, label }) => (
-            <div key={n}>
-              <p className="text-ink text-2xl md:text-3xl font-light tracking-tight">{n}</p>
-              <p className="text-ink-muted text-xs mt-1 leading-snug">{label}</p>
-            </div>
-          ))}
+        {/* espaço vazio pra manter layout flex */}
+        <div className="relative z-10" />
+      </section>
+
+      {/* ── NÚMEROS / INTRO ───────────────────────────────────────────────── */}
+      <section className="px-8 md:px-16 py-16 border-b border-line bg-stone-dark">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div>
+            <p className="text-sage text-xs tracking-[0.25em] uppercase mb-1">
+              8 semanas · Ao vivo · Em grupo
+            </p>
+            <p className="text-ink-muted text-sm">
+              Início em 22 de abril — Vagas limitadas
+            </p>
+          </div>
+          <div className="grid grid-cols-3 gap-8 md:gap-16">
+            {[
+              { n: "8", label: "semanas de programa" },
+              { n: "90min", label: "por encontro semanal" },
+              { n: "10–20min", label: "de prática diária" },
+            ].map(({ n, label }) => (
+              <div key={n}>
+                <p className="text-ink text-2xl md:text-3xl font-light tracking-tight">{n}</p>
+                <p className="text-ink-muted text-xs mt-1 leading-snug">{label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -198,7 +210,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-14">
-          <a href={PAYMENT_URL}
+          <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
             className="inline-block bg-sage hover:bg-sage-hover text-white text-xs tracking-[0.2em] uppercase px-10 py-4 transition-colors duration-200">
             Quero participar
           </a>
@@ -269,7 +281,7 @@ export default function Home() {
               <p className="text-stone text-6xl font-extralight tracking-tight">R$ 988</p>
               <p className="text-sage-light/50 text-sm">,00</p>
             </div>
-            <a href={PAYMENT_URL}
+            <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
               className="inline-block bg-stone hover:bg-stone-dark text-ink text-xs tracking-[0.2em] uppercase px-10 py-4 transition-colors duration-200">
               Garantir minha vaga
             </a>
@@ -361,8 +373,12 @@ export default function Home() {
       {/* ── SOBRE A MARI ─────────────────────────────────────────────────── */}
       <section className="px-8 md:px-16 py-24 md:py-32 border-b border-line">
         <div className="md:grid md:grid-cols-2 md:gap-16 md:items-start">
-          <div className="w-full aspect-[4/5] bg-sage-light flex items-end p-6 mb-12 md:mb-0">
-            <span className="text-ink-muted text-xs">Foto da Mari Campos</span>
+          <div className="w-full aspect-[4/5] mb-12 md:mb-0 overflow-hidden">
+            <img
+              src="/photos/mari.png"
+              alt="Mari Campos"
+              className="w-full h-full object-cover object-[center_15%]"
+            />
           </div>
           <div className="flex flex-col justify-between h-full">
             <div>
@@ -495,7 +511,7 @@ export default function Home() {
               <p className="text-ink-muted text-xs mt-1">Início: 22 de abril de 2026 · Vagas limitadas</p>
             </div>
             <div className="flex flex-col gap-4">
-              <a href={PAYMENT_URL}
+              <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
                 className="inline-block bg-sage hover:bg-sage-hover text-white text-xs tracking-[0.2em] uppercase px-12 py-4 transition-colors duration-200">
                 Garantir minha vaga
               </a>
@@ -513,7 +529,7 @@ export default function Home() {
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer className="border-t border-line px-8 md:px-16 py-8 flex items-center justify-between">
-        <Logo className="text-lg" color="#8C877F" />
+        <Logo className="h-10 w-auto" />
         <p className="text-ink-muted text-xs">
           © {new Date().getFullYear()} Mari Campos. Todos os direitos reservados.
         </p>
