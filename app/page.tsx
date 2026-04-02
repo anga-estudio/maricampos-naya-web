@@ -525,7 +525,7 @@ export default function Home() {
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer className="border-t border-line px-8 md:px-16 py-8 flex items-center justify-between">
-        <Logo className="h-10 w-auto" />
+        <Logo className="h-10 w-auto" variant="green" />
         <p className="text-ink-muted text-xs">
           © {new Date().getFullYear()} Mari Campos. Todos os direitos reservados.
         </p>
