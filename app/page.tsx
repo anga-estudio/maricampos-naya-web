@@ -32,7 +32,7 @@ export default function Home() {
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
           <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-light leading-[1.1] tracking-tight max-w-4xl [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
-            O caminho de volta pra mulher que você era antes de se perder no caminho dos outros.
+            O caminho de volta para a mulher que você era antes de se perder no caminho.
           </h1>
           <div className="mt-12">
             <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
@@ -54,7 +54,7 @@ export default function Home() {
               8 semanas · Ao vivo · Em grupo
             </p>
             <p className="text-ink-muted text-sm">
-              Início em 22 de abril — Vagas limitadas
+              Início em 22 de abril · Vagas limitadas
             </p>
           </div>
           <div className="grid grid-cols-3 gap-8 md:gap-16">
@@ -77,15 +77,15 @@ export default function Home() {
         <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">Isso é pra você se</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
           {[
-            "Você já acorda cansada mesmo tendo dormido — o descanso nunca acontece.",
+            "Você já acorda cansada mesmo tendo dormidoo descanso nunca acontece.",
             "Você sente ansiedade como um estado permanente: o peito aperta sem motivo, o corpo não desliga nem quando você deita.",
             "Você sente culpa por descansar, por dizer não, por não dar conta de tudo.",
             "Você se cobra mais do que qualquer chefe, qualquer marido, qualquer mãe já cobrou.",
             "Você engole desconfortos pra não desagradar e depois explode ou adoece.",
-            "Você começa com empolgação, mas na segunda semana já largou — não consegue sustentar quando a vida aperta.",
+            "Você começa com empolgação, mas na segunda semana já largounão consegue sustentar quando a vida aperta.",
             "Você olha no espelho e não se reconhece. O corpo mudou, a energia mudou, a vontade sumiu.",
             "Você se irrita com coisas pequenas e depois se odeia por ter se irritado.",
-            "Você sente névoa na cabeça — o pensamento que não desliga, falta de foco, cansaço mental.",
+            "Você sente névoa na cabeçao pensamento que não desliga, falta de foco, cansaço mental.",
             "Você cuida de todo mundo e no final do dia não sobrou nada pra você.",
             "Você sente solidão mesmo rodeada de gente, porque ninguém sabe o peso real do que você carrega.",
           ].map((item, i) => (
@@ -169,7 +169,7 @@ export default function Home() {
         <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">
           O que está incluso
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-line">
           {[
             {
               n: "01",
@@ -194,12 +194,22 @@ export default function Home() {
             {
               n: "05",
               title: "Especialistas convidadas",
-              desc: "Saúde hormonal, nutrição e bioenergia — pra nenhuma camada sua ficar sem cuidado.",
+              desc: "Saúde hormonal, nutrição e bioenergia, pra nenhuma camada sua ficar sem cuidado.",
             },
             {
               n: "06",
               title: "Diagnóstico raio x",
               desc: "Mapeamento completo no início e ao final. Você vê com os próprios olhos o que mudou.",
+            },
+            {
+              n: "07",
+              title: "Aulas de yoga com a Mari",
+              desc: "Práticas de yoga ao longo da mentoria para soltar a tensão que a mente não resolve, no corpo, na respiração, no movimento.",
+            },
+            {
+              n: "08",
+              title: "Bônus: Workshop vivencial com a Mari",
+              desc: "Uma prática imersiva de presença, respiração e movimento, pra você sentir no corpo o que os encontros despertam na mente.",
             },
           ].map((item) => (
             <div key={item.n} className="bg-stone-dark p-8 flex flex-col gap-4">
@@ -229,18 +239,18 @@ export default function Home() {
             },
             {
               n: "02", weeks: "Semanas 3 – 4", title: "Nutrir e aprofundar",
-              body: "Você vai entender por que o cansaço não passa só dormindo. Como a alimentação, os hormônios e o que você consome de informação afetam diretamente o que você sente.",
+              body: "Você vai entender por que o cansaço não passa só dormindo. Como a alimentação e o que você consome de informação afetam diretamente o que você sente.",
               result: "Você sai com clareza sobre o que te nutre e o que te intoxica, dentro e fora do prato.",
             },
             {
               n: "03", weeks: "Semanas 5 – 6", title: "Estruturar e proteger",
-              body: 'Você vai reorganizar a rotina a partir do seu ritmo real. Aprender a colocar limites sem culpa. Praticar o "não" que protege a sua energia.',
+              body: 'Você vai reorganizar a rotina a partir do seu ritmo real, não do ritmo que o mundo exige. Vai entender como os seus ciclos hormonais afetam a energia, o humor e o foco, e parar de achar que o problema é você. Vai aprender a dizer não sem culpa, colocar limites sem se explicar, e parar de ser a última da fila.',
               result: "Você sai sabendo o que é seu, o que é do outro, e onde traçar a linha.",
             },
             {
               n: "04", weeks: "Semanas 7 – 8", title: "Florescer e sustentar",
-              body: "Você vai aprender a confiar nas suas decisões sem precisar de aprovação. A celebrar o que conquistou. A criar uma prática que não depende de motivação — porque já virou parte de quem você é.",
-              result: "Você sai da Nayá com estrutura pra se manter — mesmo quando a vida apertar de novo.",
+              body: "Você vai aprender a confiar nas suas decisões sem precisar de aprovação. A celebrar o que conquistou. A criar uma prática que não depende de motivaçãoporque já virou parte de quem você é.",
+              result: "Você sai da Nayá com estrutura pra se mantermesmo quando a vida apertar de novo.",
             },
           ].map((phase, i) => (
             <div key={i} className="border-t border-line py-12 md:grid md:grid-cols-12 md:gap-8 md:items-start">
@@ -302,7 +312,7 @@ export default function Home() {
             {
               topic: "Sob pressão",
               before: "Reage pelo estouro ou pela paralisia. O sistema nervoso em modo sobrevivência o tempo todo.",
-              after: "Sente a ativação no corpo, respira e escolhe a resposta. As emoções vêm — mas não controlam.",
+              after: "Sente a ativação no corpo, respira e escolhe a resposta. As emoções vêmmas não controlam.",
             },
             {
               topic: "Rotina",
@@ -352,7 +362,7 @@ export default function Home() {
               "Criar limites e sustentar autocuidado sem precisar chegar no limite pra reagir.",
               "Recuperar energia e confiança por constância, não por motivação.",
               "Entender de onde vêm os seus padrões e aprender a respondê-los em vez de só reagir.",
-              "Ter uma prática diária simples que vira base — não mais uma tarefa.",
+              "Ter uma prática diária simples que vira basenão mais uma tarefa.",
             ].map((item, i) => (
               <li key={i} className="flex items-baseline gap-4 pb-6 border-b border-line/60 last:border-0 last:pb-0">
                 <span className="text-sage/40 text-xs tabular-nums flex-shrink-0">
@@ -421,7 +431,7 @@ export default function Home() {
           {[
             {
               text: "Os primeiros três dias do curso revolucionaram minha vida! Eu incorporei a respiração no meu dia-a-dia. Assim, não tenho mais dificuldade para pegar no sono à noite, durmo melhor, acordo mais descansada e o mais importante: não tenho mais crises de ansiedade às sextas-feiras. É porque o meu segundo trabalho que é aos sábados e domingos requer muito foco e agilidade. Eu sentia muita ansiedade. Muito obrigada Mariana! Obrigada também aos meus colegas participantes.",
-              author: "Ana Ucha",
+              author: "Ana Lúcia Fonseca",
             },
             {
               text: "Ei Mari Campos, ao final dessa jornada posso dizer que foi inspirador ver nascer um projeto de tamanha qualidade e profundidade, com conteúdos e práticas transformadoras. O cuidado com cada detalhe demonstra o seu carinho e dedicação. Muito grato! Parabéns!",
@@ -441,7 +451,7 @@ export default function Home() {
                 </>
               ) : (
                 <p className="text-ink-muted text-sm text-center font-sans">
-                  Depoimento — a ser adicionado
+                  Depoimento a ser adicionado
                 </p>
               )}
             </div>
@@ -458,11 +468,11 @@ export default function Home() {
           <ul className="space-y-5">
             {[
               "Nunca tenha meditado na vida.",
-              "Ache que não tem tempo — são 10-20 minutos por dia + 1 encontro semanal.",
-              "Já tenha tentado e largado várias vezes — aqui você tem estrutura, não só vontade.",
-              'Ache que "não consegue parar a cabeça" — ninguém consegue no começo.',
-              "Esteja passando pela perimenopausa ou menopausa — trabalhamos com o corpo que você tem agora.",
-              'Não se considere "espiritual" — a Nayá é baseada em prática, fisiologia e ferramentas concretas.',
+              "Ache que não tem temposão 10-20 minutos por dia + 1 encontro semanal.",
+              "Já tenha tentado e largado várias vezesaqui você tem estrutura, não só vontade.",
+              'Ache que "não consegue parar a cabeça"ninguém consegue no começo.',
+              "Esteja passando pela perimenopausa ou menopausatrabalhamos com o corpo que você tem agora.",
+              'Não se considere "espiritual"a Nayá é baseada em prática, fisiologia e ferramentas concretas.',
             ].map((item, i) => (
               <li key={i} className="flex items-baseline gap-4 pb-5 border-b border-line last:border-0 last:pb-0">
                 <span className="text-sage text-base flex-shrink-0">—</span>
@@ -480,11 +490,11 @@ export default function Home() {
           {[
             {
               q: "Quanto tempo por dia eu preciso dedicar?",
-              a: "Entre 10 e 20 minutos para a prática diária de meditação + 90 minutos do encontro semanal. Fora isso, as ferramentas são integradas na sua rotina — não exigem tempo extra.",
+              a: "Entre 10 e 20 minutos para a prática diária de meditação + 90 minutos do encontro semanal. Fora isso, as ferramentas são integradas na sua rotinanão exigem tempo extra.",
             },
             {
               q: "Os encontros são ao vivo? Fica gravado?",
-              a: "Sim, são ao vivo e ficam gravados. Mas a troca em grupo é parte essencial do processo — recomendamos fortemente estar ao vivo.",
+              a: "Sim, são ao vivo e ficam gravados. Mas a troca em grupo é parte essencial do processorecomendamos fortemente estar ao vivo.",
             },
             {
               q: "Eu nunca meditei. Vou conseguir acompanhar?",
@@ -492,7 +502,7 @@ export default function Home() {
             },
             {
               q: "Já faço terapia. A Nayá substitui?",
-              a: "Não. A Nayá é complementar à terapia — trabalha com prática diária e regulação do sistema nervoso que muitas vezes potencializam o que você já faz em terapia.",
+              a: "Não. A Nayá é complementar à terapiatrabalha com prática diária e regulação do sistema nervoso que muitas vezes potencializam o que você já faz em terapia.",
             },
             {
               q: "O grupo é grande?",
