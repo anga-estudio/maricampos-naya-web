@@ -32,7 +32,7 @@ export default function Home() {
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
           <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-light leading-[1.1] tracking-tight max-w-4xl [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
-            O caminho de volta para a mulher que você era antes de se perder no caminho.
+            O caminho de volta para a mulher que você era antes de se perder.
           </h1>
           <div className="mt-12">
             <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
@@ -208,8 +208,8 @@ export default function Home() {
             },
             {
               n: "08",
-              title: "Bônus: Workshop vivencial com a Mari",
-              desc: "Uma prática imersiva de presença, respiração e movimento, pra você sentir no corpo o que os encontros despertam na mente.",
+              title: "Bônus: Workshop Pratyahara, a arte de recolher a atenção",
+              desc: "Uma prática imersiva de presença, respiração para você aprender a desligar do externo e voltar pra dentro de si mesma em qualquer momento da vida.",
             },
           ].map((item) => (
             <div key={item.n} className="bg-stone-dark p-8 flex flex-col gap-4">
