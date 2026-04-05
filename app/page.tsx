@@ -243,7 +243,7 @@ export default function Home() {
               result: "Você sai com clareza sobre o que te nutre e o que te intoxica, dentro e fora do prato.",
             },
             {
-              n: "03", weeks: "Semanas 5 – 6", title: "Estruturar e proteger",
+              n: "03", weeks: "Semanas 5 – 6", title: "Estruturar e integrar",
               body: 'Você vai reorganizar a rotina a partir do seu ritmo real, não do ritmo que o mundo exige. Vai entender como os seus ciclos hormonais afetam a energia, o humor e o foco, e parar de achar que o problema é você. Vai aprender a dizer não sem culpa, colocar limites sem se explicar, e parar de ser a última da fila.',
               result: "Você sai sabendo o que é seu, o que é do outro, e onde traçar a linha.",
             },
