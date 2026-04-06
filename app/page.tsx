@@ -1,11 +1,77 @@
 import { Fragment } from "react";
 import Logo from "./components/Logo";
 import AmbientSound from "./components/AmbientSound";
+import { getSiteContent } from "@/lib/supabase";
 
-const WHATSAPP_URL = "https://wa.me/5564992463702";
-const PAYMENT_URL  = "https://invoice.infinitepay.io/maricamposyogi/3myfGGJ8SF";
+interface GeneralContent {
+  price: number;
+  start_date: string;
+  weeks_count: number;
+  payment_link: string;
+  header_phrase: string;
+  whatsapp_number: string;
+  daily_practice_max: number;
+  daily_practice_min: number;
+  weekly_meeting_minutes: number;
+  payment_buttons_enabled: boolean;
+}
 
-export default function Home() {
+interface IncludedItem {
+  title: string;
+  description: string;
+}
+
+interface JourneyPhase {
+  title: string;
+  weeks: string;
+  items: string[];
+  outcome: string;
+}
+
+interface Transformation {
+  before: string;
+  after: string;
+}
+
+interface Testimonial {
+  name: string;
+  text: string;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface MentorContent {
+  name: string;
+  title: string;
+  description: string;
+}
+
+export default async function Home() {
+  const content = await getSiteContent("naya");
+  const general = content.general as GeneralContent;
+  const targetAudience = content.target_audience as string[];
+  const included = content.included as IncludedItem[];
+  const journey = content.journey as JourneyPhase[];
+  const transformations = content.transformations as Transformation[];
+  const outcomes = content.outcomes as string[];
+  const mentor = content.mentor as MentorContent;
+  const testimonials = content.testimonials as Testimonial[];
+  const worksEvenIf = content.works_even_if as string[];
+  const faq = content.faq as FAQ[];
+
+  const WHATSAPP_URL = `https://wa.me/${general.whatsapp_number}`;
+  const PAYMENT_URL = general.payment_link;
+
+  const startDate = new Date(general.start_date + "T00:00:00");
+  const formattedDate = startDate.toLocaleDateString("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <main className="text-ink overflow-x-hidden">
       <AmbientSound />
@@ -32,7 +98,7 @@ export default function Home() {
         {/* headline central */}
         <div className="relative z-10 py-16 md:py-0">
           <h1 className="text-white text-[clamp(2.8rem,7vw,6rem)] font-light leading-[1.1] tracking-tight max-w-4xl [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
-            O caminho de volta para a mulher que você era antes de se perder.
+            {general.header_phrase}
           </h1>
           <div className="mt-12">
             <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
@@ -51,17 +117,17 @@ export default function Home() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div>
             <p className="text-sage text-xs tracking-[0.25em] uppercase mb-1">
-              8 semanas · Ao vivo · Em grupo
+              {general.weeks_count} semanas · Ao vivo · Em grupo
             </p>
             <p className="text-ink-muted text-sm">
-              Início em 22 de abril · Vagas limitadas
+              Início em {formattedDate} · Vagas limitadas
             </p>
           </div>
           <div className="grid grid-cols-3 gap-8 md:gap-16">
             {[
-              { n: "8", label: "semanas de programa" },
-              { n: "90min", label: "por encontro semanal" },
-              { n: "10–20min", label: "de prática diária" },
+              { n: String(general.weeks_count), label: "semanas de programa" },
+              { n: `${general.weekly_meeting_minutes}min`, label: "por encontro semanal" },
+              { n: `${general.daily_practice_min}–${general.daily_practice_max}min`, label: "de prática diária" },
             ].map(({ n, label }) => (
               <div key={n}>
                 <p className="text-ink text-2xl md:text-3xl font-light tracking-tight">{n}</p>
@@ -76,19 +142,7 @@ export default function Home() {
       <section className="px-8 md:px-16 py-24 md:py-32 border-b border-line">
         <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">Isso é pra você se</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
-          {[
-            "Você já acorda cansada mesmo tendo dormidoo descanso nunca acontece.",
-            "Você sente ansiedade como um estado permanente: o peito aperta sem motivo, o corpo não desliga nem quando você deita.",
-            "Você sente culpa por descansar, por dizer não, por não dar conta de tudo.",
-            "Você se cobra mais do que qualquer chefe, qualquer marido, qualquer mãe já cobrou.",
-            "Você engole desconfortos pra não desagradar e depois explode ou adoece.",
-            "Você começa com empolgação, mas na segunda semana já largounão consegue sustentar quando a vida aperta.",
-            "Você olha no espelho e não se reconhece. O corpo mudou, a energia mudou, a vontade sumiu.",
-            "Você se irrita com coisas pequenas e depois se odeia por ter se irritado.",
-            "Você sente névoa na cabeçao pensamento que não desliga, falta de foco, cansaço mental.",
-            "Você cuida de todo mundo e no final do dia não sobrou nada pra você.",
-            "Você sente solidão mesmo rodeada de gente, porque ninguém sabe o peso real do que você carrega.",
-          ].map((item, i) => (
+          {targetAudience.map((item, i) => (
             <div key={i} className="flex items-baseline gap-4 py-4 border-b border-line/60">
               <span className="text-sage/40 text-xs font-light tabular-nums flex-shrink-0">
                 {String(i + 1).padStart(2, "0")}
@@ -145,7 +199,7 @@ export default function Home() {
           </div>
           <div className="mt-10 md:mt-0 space-y-5 text-ink-soft leading-relaxed">
             <p>
-              Um programa de 8 semanas, em grupo, com encontros semanais ao vivo,
+              Um programa de {general.weeks_count} semanas, em grupo, com encontros semanais ao vivo,
               prática de meditação guiada e ferramentas aplicáveis que você usa
               na mesma semana.
             </p>
@@ -170,52 +224,11 @@ export default function Home() {
           O que está incluso
         </p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-line">
-          {[
-            {
-              n: "01",
-              title: "Encontros ao vivo com a Mari",
-              desc: "8 encontros de 90 minutos, em grupo, com conteúdo, prática guiada e troca real.",
-            },
-            {
-              n: "02",
-              title: "Meditação guiada",
-              desc: "Áudios exclusivos para cada fase. Práticas de 10 a 20 minutos no seu tempo, no seu ritmo.",
-            },
-            {
-              n: "03",
-              title: "Ferramentas práticas",
-              desc: "Uma ferramenta por semana: mapeamento de crenças, mapa emocional, protocolos de respiração e mais.",
-            },
-            {
-              n: "04",
-              title: "Comunidade no WhatsApp",
-              desc: "Troca, acolhimento e sustentação diária com as participantes e a Mari.",
-            },
-            {
-              n: "05",
-              title: "Especialistas convidadas",
-              desc: "Saúde hormonal, nutrição e bioenergia, pra nenhuma camada sua ficar sem cuidado.",
-            },
-            {
-              n: "06",
-              title: "Diagnóstico raio x",
-              desc: "Mapeamento completo no início e ao final. Você vê com os próprios olhos o que mudou.",
-            },
-            {
-              n: "07",
-              title: "Aulas de yoga com a Mari",
-              desc: "Práticas de yoga ao longo da mentoria para soltar a tensão que a mente não resolve, no corpo, na respiração, no movimento.",
-            },
-            {
-              n: "08",
-              title: "Bônus: Workshop Pratyahara, a arte de recolher a atenção",
-              desc: "Uma prática imersiva de presença, respiração para você aprender a desligar do externo e voltar pra dentro de si mesma em qualquer momento da vida.",
-            },
-          ].map((item) => (
-            <div key={item.n} className="bg-stone-dark p-8 flex flex-col gap-4">
-              <span className="text-sage/30 text-4xl font-extralight tracking-tight">{item.n}</span>
+          {included.map((item, i) => (
+            <div key={i} className="bg-stone-dark p-8 flex flex-col gap-4">
+              <span className="text-sage/30 text-4xl font-extralight tracking-tight">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="text-ink font-medium text-base leading-snug">{item.title}</h3>
-              <p className="text-ink-muted text-sm leading-relaxed">{item.desc}</p>
+              <p className="text-ink-muted text-sm leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>
@@ -231,39 +244,20 @@ export default function Home() {
       <section className="px-8 md:px-16 py-24 md:py-32 border-b border-line">
         <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">A jornada</p>
         <div className="space-y-0">
-          {[
-            {
-              n: "01", weeks: "Semanas 1 – 2", title: "Voltar pra casa",
-              body: "Você vai reaprender a habitar o próprio corpo. Entender de onde vêm os padrões que repete sem perceber. Identificar as crenças que carrega desde a infância e que nunca foram realmente suas.",
-              result: "Você sai dessas semanas com um mapa de si mesma que nunca teve.",
-            },
-            {
-              n: "02", weeks: "Semanas 3 – 4", title: "Nutrir e aprofundar",
-              body: "Você vai entender por que o cansaço não passa só dormindo. Como a alimentação e o que você consome de informação afetam diretamente o que você sente.",
-              result: "Você sai com clareza sobre o que te nutre e o que te intoxica, dentro e fora do prato.",
-            },
-            {
-              n: "03", weeks: "Semanas 5 – 6", title: "Estruturar e integrar",
-              body: 'Você vai reorganizar a rotina a partir do seu ritmo real, não do ritmo que o mundo exige. Vai entender como os seus ciclos hormonais afetam a energia, o humor e o foco, e parar de achar que o problema é você. Vai aprender a dizer não sem culpa, colocar limites sem se explicar, e parar de ser a última da fila.',
-              result: "Você sai sabendo o que é seu, o que é do outro, e onde traçar a linha.",
-            },
-            {
-              n: "04", weeks: "Semanas 7 – 8", title: "Florescer e sustentar",
-              body: "Você vai aprender a confiar nas suas decisões sem precisar de aprovação. A celebrar o que conquistou. A criar uma prática que não depende de motivaçãoporque já virou parte de quem você é.",
-              result: "Você sai da Nayá com estrutura pra se mantermesmo quando a vida apertar de novo.",
-            },
-          ].map((phase, i) => (
+          {journey.map((phase, i) => (
             <div key={i} className="border-t border-line py-12 md:grid md:grid-cols-12 md:gap-8 md:items-start">
               <span className="hidden md:block text-sage/20 text-6xl font-extralight tracking-tight col-span-1 leading-none">
-                {phase.n}
+                {String(i + 1).padStart(2, "0")}
               </span>
               <div className="md:col-span-3">
                 <p className="text-sage text-xs tracking-[0.15em] uppercase mb-2">{phase.weeks}</p>
                 <h3 className="text-ink text-2xl md:text-3xl font-light tracking-tight">{phase.title}</h3>
               </div>
               <div className="mt-5 md:mt-0 md:col-span-8 space-y-3">
-                <p className="text-ink-soft leading-relaxed text-sm md:text-base">{phase.body}</p>
-                <p className="text-sage text-sm">{phase.result}</p>
+                <p className="text-ink-soft leading-relaxed text-sm md:text-base">
+                  {phase.items.join(" ")}
+                </p>
+                <p className="text-sage text-sm">{phase.outcome}</p>
               </div>
             </div>
           ))}
@@ -282,13 +276,13 @@ export default function Home() {
               Dê o primeiro passo em direção a uma vida mais presente e serena.
             </h2>
             <p className="text-sage-light/70 text-sm mt-6">
-              Início do programa: 22 de abril de 2026
+              Início do programa: {formattedDate}
             </p>
           </div>
           <div className="mt-12 md:mt-0 flex flex-col items-start md:items-end gap-5">
             <div>
               <p className="text-sage-light/50 text-sm line-through">R$ 1.080,00</p>
-              <p className="text-stone text-6xl font-extralight tracking-tight">R$ 988<span className="text-sage-light/50 text-sm">,00</span></p>
+              <p className="text-stone text-6xl font-extralight tracking-tight">R$ {general.price}<span className="text-sage-light/50 text-sm">,00</span></p>
             </div>
             <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
               className="inline-block bg-stone hover:bg-stone-dark text-ink text-xs tracking-[0.2em] uppercase px-10 py-4 transition-colors duration-200">
@@ -300,7 +294,7 @@ export default function Home() {
 
       {/* ── TRANSFORMAÇÃO ────────────────────────────────────────────────── */}
       <section className="px-8 md:px-16 py-24 md:py-32 border-b border-line">
-        <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">O que muda em 8 semanas</p>
+        <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">O que muda em {general.weeks_count} semanas</p>
         <div className="grid grid-cols-2 gap-px bg-line">
           <div className="bg-stone px-6 py-4 flex items-center gap-3">
             <span className="text-ink-muted text-xs tracking-widest uppercase">Antes</span>
@@ -308,40 +302,12 @@ export default function Home() {
           <div className="bg-stone px-6 py-4 flex items-center gap-3">
             <span className="text-sage text-xs tracking-widest uppercase">Depois</span>
           </div>
-          {[
-            {
-              topic: "Sob pressão",
-              before: "Reage pelo estouro ou pela paralisia. O sistema nervoso em modo sobrevivência o tempo todo.",
-              after: "Sente a ativação no corpo, respira e escolhe a resposta. As emoções vêmmas não controlam.",
-            },
-            {
-              topic: "Rotina",
-              before: "Acorda no susto, começa atrasada, termina o dia tendo resolvido tudo pros outros.",
-              after: "Tem um ritual matinal não negociável. Planeja a partir da energia real. Começa por ela.",
-            },
-            {
-              topic: "Limites",
-              before: "Aceita demandas que não são dela. Engole, acumula, explode. Ou adoece calada.",
-              after: 'O "não" é sereno mas firme. Não aceita mais ser a última prioridade da própria vida.',
-            },
-            {
-              topic: "Pensamento",
-              before: '"Eu não dou conta." "Só queria sumir pra poder descansar."',
-              after: '"Eu tenho base." "Eu sei voltar pra mim." "Meu descanso é sagrado."',
-            },
-            {
-              topic: "Corpo",
-              before: "É um fardo. Dores ignoradas, névoa mental, não se reconhece no espelho.",
-              after: "É a sua casa. Entende os sinais, age a favor deles. Sustenta o cuidado.",
-            },
-          ].map((row) => (
-            <Fragment key={row.topic}>
+          {transformations.map((row, i) => (
+            <Fragment key={i}>
               <div className="bg-stone-dark p-6 md:p-8">
-                <p className="text-ink-muted text-xs uppercase tracking-widest mb-3">{row.topic}</p>
                 <p className="text-ink-soft text-sm md:text-base leading-relaxed">{row.before}</p>
               </div>
               <div className="bg-stone p-6 md:p-8">
-                <p className="text-sage text-xs uppercase tracking-widest mb-3">{row.topic}</p>
                 <p className="text-ink text-sm md:text-base leading-relaxed">{row.after}</p>
               </div>
             </Fragment>
@@ -353,17 +319,10 @@ export default function Home() {
       <section className="px-8 md:px-16 py-24 md:py-32 border-b border-line bg-stone-dark">
         <div className="md:grid md:grid-cols-2 md:gap-20">
           <h2 className="text-ink text-4xl md:text-5xl font-extralight leading-tight tracking-tight mb-12 md:mb-0">
-            O que a Nayá te entrega ao final de 8 semanas
+            O que a Nayá te entrega ao final de {general.weeks_count} semanas
           </h2>
           <ul className="space-y-6">
-            {[
-              "Reduzir ansiedade e ruminação mental com ferramentas que você usa no dia a dia.",
-              "Tomar decisões com mais clareza e menos culpa.",
-              "Criar limites e sustentar autocuidado sem precisar chegar no limite pra reagir.",
-              "Recuperar energia e confiança por constância, não por motivação.",
-              "Entender de onde vêm os seus padrões e aprender a respondê-los em vez de só reagir.",
-              "Ter uma prática diária simples que vira basenão mais uma tarefa.",
-            ].map((item, i) => (
+            {outcomes.map((item, i) => (
               <li key={i} className="flex items-baseline gap-4 pb-6 border-b border-line/60 last:border-0 last:pb-0">
                 <span className="text-sage/40 text-xs tabular-nums flex-shrink-0">
                   {String(i + 1).padStart(2, "0")}
@@ -385,33 +344,22 @@ export default function Home() {
           <div className="w-full aspect-[4/5] mb-12 md:mb-0 overflow-hidden">
             <img
               src="/photos/mari.png"
-              alt="Mari Campos"
+              alt={mentor.name}
               className="w-full h-full object-cover object-[center_15%]"
             />
           </div>
           <div className="flex flex-col justify-between h-full">
             <div>
               <p className="text-sage text-xs tracking-[0.25em] uppercase mb-6">
-                Quem vai caminhar com você
+                {mentor.title}
               </p>
               <h2 className="text-ink text-5xl md:text-6xl font-extralight tracking-tight mb-8">
-                Mari<br />Campos
+                {mentor.name.split(" ").map((word, i) => (
+                  <Fragment key={i}>{i > 0 && <br />}{word}</Fragment>
+                ))}
               </h2>
               <div className="space-y-4 text-ink-soft leading-relaxed text-sm md:text-base">
-                <p>
-                  Professora de yoga e meditação, facilitadora de processos de
-                  transformação, criadora do programa Silencie e da Mentoria Nayá.
-                </p>
-                <p>
-                  Há mais de uma década, dedica-se ao estudo e à transmissão de
-                  técnicas de meditação, yoga, respiração consciente e presença —
-                  conduzindo alunos e jornadas no Brasil e no exterior.
-                </p>
-                <p>
-                  Sua abordagem une profundidade, constância e acolhimento.
-                  Ela cria espaços seguros para o silêncio, a escuta e a
-                  transformação acontecerem de forma sustentada.
-                </p>
+                <p>{mentor.description}</p>
               </div>
             </div>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
@@ -428,32 +376,11 @@ export default function Home() {
           O que dizem sobre a experiência com a Mari
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line">
-          {[
-            {
-              text: "Os primeiros três dias do curso revolucionaram minha vida! Eu incorporei a respiração no meu dia-a-dia. Assim, não tenho mais dificuldade para pegar no sono à noite, durmo melhor, acordo mais descansada e o mais importante: não tenho mais crises de ansiedade às sextas-feiras. É porque o meu segundo trabalho que é aos sábados e domingos requer muito foco e agilidade. Eu sentia muita ansiedade. Muito obrigada Mariana! Obrigada também aos meus colegas participantes.",
-              author: "Ana Lúcia Fonseca",
-            },
-            {
-              text: "Ei Mari Campos, ao final dessa jornada posso dizer que foi inspirador ver nascer um projeto de tamanha qualidade e profundidade, com conteúdos e práticas transformadoras. O cuidado com cada detalhe demonstra o seu carinho e dedicação. Muito grato! Parabéns!",
-              author: "Andre Nascimento",
-            },
-            {
-              text: "Mari Campos, esses dias foram realmente muito, muito significativos para mim. Me trouxeram ainda mais consciência de estar no presente, de perceber quando começo a entrar no automático e me puxar de volta para viver o agora, com mais presença, alegria e intenção em cada momento.",
-              author: "Lu Mangoni",
-            },
-          ].map((dep, i) => (
+          {testimonials.map((dep, i) => (
             <div key={i} className="bg-stone-dark p-8 min-h-52 flex flex-col justify-between">
               <span className="text-sage/20 text-6xl font-extralight leading-none">&ldquo;</span>
-              {dep.text ? (
-                <>
-                  <p className="text-ink-soft text-sm leading-relaxed">{dep.text}</p>
-                  <p className="text-sage text-xs tracking-widest uppercase mt-4">{dep.author}</p>
-                </>
-              ) : (
-                <p className="text-ink-muted text-sm text-center font-sans">
-                  Depoimento a ser adicionado
-                </p>
-              )}
+              <p className="text-ink-soft text-sm leading-relaxed">{dep.text}</p>
+              <p className="text-sage text-xs tracking-widest uppercase mt-4">{dep.name}</p>
             </div>
           ))}
         </div>
@@ -466,14 +393,7 @@ export default function Home() {
             A Nayá funciona mesmo que você:
           </h2>
           <ul className="space-y-5">
-            {[
-              "Nunca tenha meditado na vida.",
-              "Ache que não tem temposão 10-20 minutos por dia + 1 encontro semanal.",
-              "Já tenha tentado e largado várias vezesaqui você tem estrutura, não só vontade.",
-              'Ache que "não consegue parar a cabeça"ninguém consegue no começo.',
-              "Esteja passando pela perimenopausa ou menopausatrabalhamos com o corpo que você tem agora.",
-              'Não se considere "espiritual"a Nayá é baseada em prática, fisiologia e ferramentas concretas.',
-            ].map((item, i) => (
+            {worksEvenIf.map((item, i) => (
               <li key={i} className="flex items-baseline gap-4 pb-5 border-b border-line last:border-0 last:pb-0">
                 <span className="text-sage text-base flex-shrink-0">—</span>
                 <span className="text-ink-soft text-sm md:text-base leading-relaxed">{item}</span>
@@ -487,37 +407,16 @@ export default function Home() {
       <section className="px-8 md:px-16 py-24 md:py-32 border-b border-line bg-stone-dark">
         <p className="text-sage text-xs tracking-[0.25em] uppercase mb-16">Perguntas frequentes</p>
         <div className="max-w-2xl divide-y divide-line">
-          {[
-            {
-              q: "Quanto tempo por dia eu preciso dedicar?",
-              a: "Entre 10 e 20 minutos para a prática diária de meditação + 90 minutos do encontro semanal. Fora isso, as ferramentas são integradas na sua rotinanão exigem tempo extra.",
-            },
-            {
-              q: "Os encontros são ao vivo? Fica gravado?",
-              a: "Sim, são ao vivo e ficam gravados. Mas a troca em grupo é parte essencial do processorecomendamos fortemente estar ao vivo.",
-            },
-            {
-              q: "Eu nunca meditei. Vou conseguir acompanhar?",
-              a: "Sim. As práticas são guiadas, progressivas e acessíveis. Você não precisa de experiência prévia. Só de disposição pra começar.",
-            },
-            {
-              q: "Já faço terapia. A Nayá substitui?",
-              a: "Não. A Nayá é complementar à terapiatrabalha com prática diária e regulação do sistema nervoso que muitas vezes potencializam o que você já faz em terapia.",
-            },
-            {
-              q: "O grupo é grande?",
-              a: "Não. As vagas são limitadas de propósito. Grupo pequeno pra que a Mari veja cada uma, escute cada uma.",
-            },
-          ].map((faq, i) => (
+          {faq.map((item, i) => (
             <details key={i} className="py-6">
               <summary className="flex items-center justify-between gap-6 cursor-pointer">
-                <span className="text-ink font-medium text-base leading-snug">{faq.q}</span>
+                <span className="text-ink font-medium text-base leading-snug">{item.question}</span>
                 <span className="flex-shrink-0 text-sage text-2xl font-light leading-none w-6 text-center">
                   <span className="icon-plus">+</span>
                   <span className="icon-minus">−</span>
                 </span>
               </summary>
-              <p className="mt-4 text-ink-soft leading-relaxed text-sm pr-10">{faq.a}</p>
+              <p className="mt-4 text-ink-soft leading-relaxed text-sm pr-10">{item.answer}</p>
             </details>
           ))}
         </div>
@@ -536,8 +435,8 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:items-end gap-10">
             <div>
               <p className="text-ink-muted text-sm line-through mb-0.5">R$ 1.080,00</p>
-              <p className="text-ink text-5xl md:text-6xl font-extralight tracking-tight">R$ 988,00</p>
-              <p className="text-ink-muted text-xs mt-1">Início: 22 de abril de 2026 · Vagas limitadas</p>
+              <p className="text-ink text-5xl md:text-6xl font-extralight tracking-tight">R$ {general.price},00</p>
+              <p className="text-ink-muted text-xs mt-1">Início: {formattedDate} · Vagas limitadas</p>
             </div>
             <div className="flex flex-col gap-4">
               <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
@@ -560,7 +459,7 @@ export default function Home() {
       <footer className="border-t border-line px-8 md:px-16 py-8 flex items-center justify-between">
         <Logo className="h-10 w-auto" variant="green" />
         <p className="text-ink-muted text-xs">
-          © {new Date().getFullYear()} Mari Campos. Todos os direitos reservados.
+          © {new Date().getFullYear()} {mentor.name}. Todos os direitos reservados.
         </p>
       </footer>
 
