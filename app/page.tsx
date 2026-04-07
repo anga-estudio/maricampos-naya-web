@@ -283,7 +283,6 @@ export default async function Home() {
           </div>
           <div className="mt-12 md:mt-0 flex flex-col items-start md:items-end gap-5">
             <div>
-              <p className="text-sage-light/50 text-sm line-through">R$ 1.080,00</p>
               <p className="text-stone text-6xl font-extralight tracking-tight">R$ {general.price}<span className="text-sage-light/50 text-sm">,00</span></p>
             </div>
             <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer"
@@ -436,7 +435,6 @@ export default async function Home() {
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end gap-10">
             <div>
-              <p className="text-ink-muted text-sm line-through mb-0.5">R$ 1.080,00</p>
               <p className="text-ink text-5xl md:text-6xl font-extralight tracking-tight">R$ {general.price},00</p>
               <p className="text-ink-muted text-xs mt-1">Início: {formattedDate} · Vagas limitadas</p>
             </div>
