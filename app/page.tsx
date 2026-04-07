@@ -3,6 +3,8 @@ import Logo from "./components/Logo";
 import AmbientSound from "./components/AmbientSound";
 import { getSiteContent } from "@/lib/supabase";
 
+export const dynamic = "force-dynamic";
+
 interface GeneralContent {
   price: number;
   start_date: string;
